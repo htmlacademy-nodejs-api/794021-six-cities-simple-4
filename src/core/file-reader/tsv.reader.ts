@@ -58,7 +58,7 @@ export default class TSVFileReader implements FileReaderInterface {
           city: this.parseCity(city),
           previewPath,
           photoPaths: this.parsePhotoPaths(photoPaths),
-          isPremium: Boolean(isPremium),
+          isPremium: isPremium === 'true',
           rating: Number.parseFloat(rating),
           type: OfferType[type as keyof typeof OfferType],
           roomCount: Number.parseInt(roomCount, 10),
@@ -96,7 +96,7 @@ export default class TSVFileReader implements FileReaderInterface {
     return {
       avatarPath,
       email,
-      isPro: Boolean(isPro),
+      isPro: isPro === 'true',
       name,
       password,
     };
