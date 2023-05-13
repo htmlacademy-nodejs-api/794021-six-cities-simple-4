@@ -30,25 +30,46 @@ export default class TSVFileReader implements FileReaderInterface {
     return this.rawData
       .split(Separator.Line)
       .filter((row) => row.trim() !== '')
-      .map((line) => line.split('\t'))
-      .map(([ title, description, date, city, previewPath, photoPaths, isPremium, rating, type, roomCount, maxGuestCount, price, features, host, commentCount, location ]) => ({
-        title,
-        description,
-        publicationDate: new Date(date),
-        city: this.parseCity(city),
-        previewPath,
-        photoPaths: this.parsePhotoPaths(photoPaths),
-        isPremium: Boolean(isPremium),
-        rating: Number.parseFloat(rating),
-        type: OfferType[type as keyof typeof OfferType],
-        roomCount: Number.parseInt(roomCount, 10),
-        maxGuestCount: Number.parseInt(maxGuestCount, 10),
-        price: Number.parseInt(price, 10),
-        features: this.parseFeatures(features),
-        host: this.parseHost(host),
-        commentCount: Number.parseInt(commentCount, 10),
-        location: this.parseLocation(location),
-      }));
+      .map((line) => line.split(Separator.Column))
+      .map((columns) => {
+        const [
+          title,
+          description,
+          date,
+          city,
+          previewPath,
+          photoPaths,
+          isPremium,
+          rating,
+          type,
+          roomCount,
+          maxGuestCount,
+          price,
+          features,
+          host,
+          commentCount,
+          location,
+        ] = columns;
+
+        return {
+          title,
+          description,
+          publicationDate: new Date(date),
+          city: this.parseCity(city),
+          previewPath,
+          photoPaths: this.parsePhotoPaths(photoPaths),
+          isPremium: Boolean(isPremium),
+          rating: Number.parseFloat(rating),
+          type: OfferType[type as keyof typeof OfferType],
+          roomCount: Number.parseInt(roomCount, 10),
+          maxGuestCount: Number.parseInt(maxGuestCount, 10),
+          price: Number.parseInt(price, 10),
+          features: this.parseFeatures(features),
+          host: this.parseHost(host),
+          commentCount: Number.parseInt(commentCount, 10),
+          location: this.parseLocation(location),
+        };
+      });
   }
 
   protected parseCity(city: string): City {
