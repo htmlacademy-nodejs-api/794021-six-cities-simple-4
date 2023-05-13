@@ -75,7 +75,7 @@ export default class TSVFileReader implements FileReaderInterface {
   protected parseCity(city: string): City {
     const [ name, latitude, longitude ] = city.split(Separator.ColumnSubItem);
     return {
-      name: CityName[name as keyof typeof CityName],
+      name: name as CityName,
       location: {
         latitude: Number.parseFloat(latitude),
         longitude: Number.parseFloat(longitude),
