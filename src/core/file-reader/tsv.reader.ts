@@ -7,6 +7,12 @@ import { User } from '../../types/user.type.js';
 import { Location } from '../../types/location.type.js';
 import { OfferType } from '../../types/offer-type.type.js';
 
+const Separator = {
+  Line: '\n',
+  Column: '\t',
+  ColumnSubItem: ';',
+} as const;
+
 export default class TSVFileReader implements FileReaderInterface {
   private rawData = '';
 
@@ -22,7 +28,7 @@ export default class TSVFileReader implements FileReaderInterface {
     }
 
     return this.rawData
-      .split('\n')
+      .split(Separator.Line)
       .filter((row) => row.trim() !== '')
       .map((line) => line.split('\t'))
       .map(([ title, description, date, city, previewPath, photoPaths, isPremium, rating, type, roomCount, maxGuestCount, price, features, host, commentCount, location ]) => ({
@@ -46,7 +52,7 @@ export default class TSVFileReader implements FileReaderInterface {
   }
 
   protected parseCity(city: string): City {
-    const [ name, latitude, longitude ] = city.split(';');
+    const [ name, latitude, longitude ] = city.split(Separator.ColumnSubItem);
     return {
       name: CityName[name as keyof typeof CityName],
       location: {
@@ -59,13 +65,13 @@ export default class TSVFileReader implements FileReaderInterface {
 
   protected parseFeatures(features: string): OfferFeatures {
     return features.
-      split(';').
+      split(Separator.ColumnSubItem).
       map((offer) => offer as OfferFeature);
   }
 
 
   protected parseHost(host: string): User {
-    const [ name, email, avatarPath, password, isPro ] = host.split(';');
+    const [ name, email, avatarPath, password, isPro ] = host.split(Separator.ColumnSubItem);
     return {
       avatarPath,
       email,
@@ -77,7 +83,7 @@ export default class TSVFileReader implements FileReaderInterface {
 
 
   protected parseLocation(location: string): Location {
-    const [ latitude, longitude ] = location.split(';');
+    const [ latitude, longitude ] = location.split(Separator.ColumnSubItem);
     return {
       latitude: Number.parseFloat(latitude),
       longitude: Number.parseFloat(longitude),
@@ -86,6 +92,6 @@ export default class TSVFileReader implements FileReaderInterface {
 
 
   protected parsePhotoPaths(photoPaths: string): string[] {
-    return photoPaths.split(';');
+    return photoPaths.split(Separator.ColumnSubItem);
   }
 }
