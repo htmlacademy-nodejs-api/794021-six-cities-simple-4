@@ -60,7 +60,7 @@ export default class TSVFileReader implements FileReaderInterface {
           photoPaths: this.parsePhotoPaths(photoPaths),
           isPremium: isPremium === 'true',
           rating: Number.parseFloat(rating),
-          type: OfferType[type as keyof typeof OfferType],
+          type: type as OfferType,
           roomCount: Number.parseInt(roomCount, 10),
           maxGuestCount: Number.parseInt(maxGuestCount, 10),
           price: Number.parseInt(price, 10),
