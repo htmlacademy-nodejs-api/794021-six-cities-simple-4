@@ -33,7 +33,8 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const hostEmail = getRandomItem<string>(this.data.userEmails);
     const hostAvatarUrl = getRandomItem<string>(this.data.userAvatarPaths);
     const hostPassword = MOCK_PASSWORD;
-    const host = [ hostName, hostEmail, hostAvatarUrl, hostPassword ].join(';');
+    const hostIsPro = getRandomNumber(0, 1) === 1;
+    const host = [ hostName, hostEmail, hostAvatarUrl, hostPassword, hostIsPro ].join(';');
 
     const commentCount = 0;
     const location = OfferGenerator.generateNearbyLocation(cityValues);
