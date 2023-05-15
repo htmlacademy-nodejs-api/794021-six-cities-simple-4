@@ -5,7 +5,7 @@ const CHUNK_SIZE_IN_BYTES = 128;
 const LINE_SEPARATOR = '\n';
 
 
-export default class TSVFileWriter implements FileWriterInterface {
+export default class StringFileWriter implements FileWriterInterface {
   private stream: WriteStream;
 
 
