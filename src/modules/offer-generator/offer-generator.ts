@@ -30,7 +30,7 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const featuresString = getRandomItems<string>(this.data.features).join(';');
 
     const hostName = getRandomItem<string>(this.data.userNames);
-    const hostEmail = getRandomItem<string>(this.data.userEmails);
+    const hostEmail = getRandomItem<string>(this.data.userEmails); // TODO: since email generated randomly, it can be duplicated (# 3.1.1)
     const hostAvatarUrl = getRandomItem<string>(this.data.userAvatarPaths);
     const hostPassword = MOCK_PASSWORD;
     const hostIsPro = getRandomNumber(0, 1) === 1;
