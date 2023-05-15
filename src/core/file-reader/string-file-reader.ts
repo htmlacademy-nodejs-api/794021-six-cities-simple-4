@@ -1,6 +1,7 @@
 import { createReadStream } from 'node:fs';
 import { EventEmitter } from 'node:events';
 import { FileReaderInterface } from './file-reader.interface.js';
+import { FileOperations } from '../../consts/files.js';
 
 const CHUNK_SIZE_IN_BYTES = 64;
 const LINE_SEPARATOR = '\n' as const;
@@ -17,7 +18,7 @@ export default class StringFileReader extends EventEmitter implements FileReader
       autoClose: true,
       emitClose: true,
       flags: 'r',
-      highWaterMark: CHUNK_SIZE_IN_BYTES,
+      highWaterMark: FileOperations.ReadStreamChunkSizeInBytes,
       encoding: 'utf-8',
     });
 

@@ -1,6 +1,6 @@
 import { createWriteStream, WriteStream } from 'node:fs';
 import { FileWriterInterface } from './file-writer.interface.js';
-
+import { FileOperations } from '../../consts/files.js';
 const CHUNK_SIZE_IN_BYTES = 128;
 const LINE_SEPARATOR = '\n';
 
@@ -13,7 +13,7 @@ export default class StringFileWriter implements FileWriterInterface {
     this.stream = createWriteStream(this.filename, {
       flags: 'w',
       encoding: 'utf8',
-      highWaterMark: CHUNK_SIZE_IN_BYTES,
+      highWaterMark: FileOperations.WriteStreamChunkSizeInBytes,
       autoClose: true,
     });
   }
