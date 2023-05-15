@@ -4,7 +4,7 @@ import { OfferType } from './offer-type.type.js';
 import { OfferFeatures } from './offer-features.type.js';
 import { User } from './user.type.js';
 
-export type Offer = { // TODO sorted alphabetically?
+export type Offer = { // TODO sort alphabetically? take decision after 2023-06-01
   title: string;
   description: string;
   publicationDate: Date;

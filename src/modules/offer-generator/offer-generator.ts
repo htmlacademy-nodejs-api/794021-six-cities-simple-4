@@ -35,7 +35,6 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const hostPassword = MOCK_PASSWORD;
     const host = [ hostName, hostEmail, hostAvatarUrl, hostPassword ].join(';');
 
-    // TODO: 'comment' field is not required by now due to loosened requirements
     const commentCount = 0;
     const location = OfferGenerator.generateNearbyLocation(cityValues);
 
