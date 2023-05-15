@@ -1,3 +1,4 @@
+import { exit } from 'node:process';
 import { CliCommandInterface } from './cli-command.interface.js';
 import StringFileReader from '../file-reader/string-file-reader.js';
 import { OfferParser } from '../../modules/offer-parser/offer-parser.js';
@@ -20,7 +21,7 @@ export default class ImportCommand implements CliCommandInterface {
         throw err;
       }
       console.error(`Could not import data from file due to reason: «${err.message}»`);
-      throw err;
+      exit(1);
     }
   }
 
