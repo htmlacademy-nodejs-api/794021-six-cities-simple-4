@@ -1,4 +1,4 @@
-import TSVFileReader from '../file-reader/tsv.reader.js';
+import TSVFileReader from '../file-reader/tsv-file-reader.js';
 import { CliCommandInterface } from './cli-command.interface.js';
 
 
