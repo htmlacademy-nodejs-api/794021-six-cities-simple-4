@@ -3,3 +3,8 @@ export const FileOperations = {
   WriteStreamChunkSizeInBytes: 64,
 };
 
+export const StringFile = {
+  ColumnSeparator: '\t',
+  ColumnSubitemSeparator: ';',
+  LineSeparator: '\n',
+};

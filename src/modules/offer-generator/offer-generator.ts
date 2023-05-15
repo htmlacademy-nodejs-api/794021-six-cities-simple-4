@@ -2,9 +2,9 @@ import { OfferGeneratorInterface } from './offer-generator.interface.js';
 import { getRandomItem, getRandomItems } from '../../core/helpers/index.js';
 import { getRandomNumber } from '../../core/helpers/random.js';
 import { OfferGuestCount, OfferPrice, OfferRating, OfferRoomCount } from '../../consts/offers.js';
+import { StringFile } from '../../consts/files.js';
 import { MockData } from '../../types/mock-data.type.js';
 
-const COLUMN_SEPARATOR = '\t';
 const MOCK_PASSWORD = '123'; // TODO: 'password' field is not required by now due to loosened requirements
 const TEN_KILOMETERS_IN_GEO_DEGREES = 10 / 40000 / 360;
 
@@ -44,7 +44,7 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       rating, offerType, roomCount,
       maxGuestCount, price, featuresString,
       host, commentCount, location
-    ].join(COLUMN_SEPARATOR);
+    ].join(StringFile.ColumnSeparator);
   }
 
 

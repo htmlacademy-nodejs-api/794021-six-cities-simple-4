@@ -1,10 +1,7 @@
 import { createReadStream } from 'node:fs';
 import { EventEmitter } from 'node:events';
 import { FileReaderInterface } from './file-reader.interface.js';
-import { FileOperations } from '../../consts/files.js';
-
-const CHUNK_SIZE_IN_BYTES = 64;
-const LINE_SEPARATOR = '\n' as const;
+import { FileOperations, StringFile } from '../../consts/files.js';
 
 
 export default class StringFileReader extends EventEmitter implements FileReaderInterface {
@@ -29,7 +26,7 @@ export default class StringFileReader extends EventEmitter implements FileReader
     for await (const chunk of stream) {
       stringBuffer += chunk.toString();
 
-      while ((nextLinePosition = stringBuffer.indexOf(LINE_SEPARATOR)) >= 0) {
+      while ((nextLinePosition = stringBuffer.indexOf(StringFile.LineSeparator)) >= 0) {
         const row = stringBuffer.slice(0, nextLinePosition + 1);
         stringBuffer = stringBuffer.slice(++nextLinePosition);
         fullRowCount++;

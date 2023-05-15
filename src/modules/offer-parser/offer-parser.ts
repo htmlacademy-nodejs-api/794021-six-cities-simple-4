@@ -1,4 +1,5 @@
 import { OfferParserInterface } from './offer-parser.interface';
+import { StringFile } from '../../consts/files.js';
 import { City, CityName } from '../../types/city.type';
 import { Location } from '../../types/location.type';
 import { OfferFeature, OfferFeatures } from '../../types/offer-features.type';
@@ -6,18 +7,13 @@ import { OfferType } from '../../types/offer-type.type';
 import { Offer } from '../../types/offers.type';
 import { User } from '../../types/user.type';
 
-const Separator = {
-  Column: '\t',
-  ColumnSubItem: ';',
-} as const;
-
 
 export class OfferParser implements OfferParserInterface {
   constructor(private readonly str: string) {}
 
 
   public parse(): Offer {
-    const columns = this.str.split(Separator.Column);
+    const columns = this.str.split(StringFile.ColumnSeparator);
 
     const [
       title,
@@ -60,7 +56,7 @@ export class OfferParser implements OfferParserInterface {
 
 
   private static parseCity(city: string): City {
-    const [ name, latitude, longitude ] = city.split(Separator.ColumnSubItem);
+    const [ name, latitude, longitude ] = city.split(StringFile.ColumnSubitemSeparator);
     return {
       name: name as CityName,
       location: {
@@ -73,13 +69,13 @@ export class OfferParser implements OfferParserInterface {
 
   private static parseFeatures(features: string): OfferFeatures {
     return features.
-      split(Separator.ColumnSubItem).
+      split(StringFile.ColumnSubitemSeparator).
       map((offer) => offer as OfferFeature);
   }
 
 
   private static parseHost(host: string): User {
-    const [ name, email, avatarPath, password, isPro ] = host.split(Separator.ColumnSubItem);
+    const [ name, email, avatarPath, password, isPro ] = host.split(StringFile.ColumnSubitemSeparator);
     return {
       avatarPath,
       email,
@@ -91,7 +87,7 @@ export class OfferParser implements OfferParserInterface {
 
 
   private static parseLocation(location: string): Location {
-    const [ latitude, longitude ] = location.split(Separator.ColumnSubItem);
+    const [ latitude, longitude ] = location.split(StringFile.ColumnSubitemSeparator);
     return {
       latitude: Number.parseFloat(latitude),
       longitude: Number.parseFloat(longitude),
@@ -100,7 +96,7 @@ export class OfferParser implements OfferParserInterface {
 
 
   private static parsePhotoPaths(photoPaths: string): string[] {
-    return photoPaths.split(Separator.ColumnSubItem);
+    return photoPaths.split(StringFile.ColumnSubitemSeparator);
   }
 
 }
