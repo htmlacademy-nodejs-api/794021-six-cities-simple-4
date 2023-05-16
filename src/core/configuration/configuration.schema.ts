@@ -4,13 +4,13 @@ import validator from 'convict-format-with-validator';
 convict.addFormats(validator);
 
 
-export type ApplicationSchema = {
+export type ConfigurationOptions = {
   DB_SERVER_ADDRESS: string;
   INCOMING_TCP_PORT: number;
   PASSWORD_HASH_SALT: string;
 }
 
-export const ApplicationConfigurationSchema = convict<ApplicationSchema>({
+export const ConfigurationSchema = convict<ConfigurationOptions>({
   DB_SERVER_ADDRESS: {
     doc: 'IP address of the MongoDB database server',
     format: 'ipaddress',
