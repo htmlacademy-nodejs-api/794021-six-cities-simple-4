@@ -1,3 +1,3 @@
-export interface ConfigurationInterface<U> {
-  get<T extends keyof U>(key: T): U[T];
+export interface ConfigurationInterface<EnvSchema> {
+  get<VarName extends keyof EnvSchema>(key: VarName): EnvSchema[VarName];
 }
