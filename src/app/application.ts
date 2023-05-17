@@ -11,7 +11,7 @@ export default class Application {
 
 
   public async init() {
-    this.logger.info('Application initialized.');
+    this.logger.info('Application is starting...');
     this.logger.info(`Incoming TCP port: ${this.configuration.get('INCOMING_TCP_PORT')}`);
   }
 
