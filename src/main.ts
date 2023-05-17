@@ -12,13 +12,16 @@ import { ApplicationComponent } from './types/application-component.enum.js';
 async function bootstrap() {
   const container = new Container();
   container.bind<Application>(ApplicationComponent.Application).
-    to(Application);
+    to(Application).
+    inSingletonScope();
 
   container.bind<ConfigurationInterface<ConfigurationOptions>>(ApplicationComponent.ConfigurationInterface).
-    to(ConfigurationService);
+    to(ConfigurationService).
+    inSingletonScope();
 
   container.bind<LoggerInterface>(ApplicationComponent.LoggerInterface).
-    to(LoggerService);
+    to(LoggerService).
+    inSingletonScope();
 
   const application = container.get<Application>(ApplicationComponent.Application);
   await application.init();
