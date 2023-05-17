@@ -24,7 +24,7 @@ export default class ConfigurationService implements ConfigurationInterface<Conf
     });
 
     this.config = ConfigurationSchema.getProperties();
-    this.logger.info('".env: file found and successfully parsed.');
+    this.logger.info('".env" file found and successfully parsed.');
   }
 
 
