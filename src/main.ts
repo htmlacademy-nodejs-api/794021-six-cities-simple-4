@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Container } from 'inversify';
 import Application from './app/application.js';
-import { LoggerService } from './core/logger/logger.service.js'; // TODO import as default?
+import { LoggerService } from './core/logger/logger.service.js';
 import { LoggerInterface } from './core/logger/logger.interface.js';
 import ConfigurationService from './core/configuration/configuration.service.js';
 import { ConfigurationInterface } from './core/configuration/configuration.interface.js';
