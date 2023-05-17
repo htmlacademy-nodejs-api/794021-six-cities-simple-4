@@ -4,7 +4,7 @@ import { LoggerInterface } from './logger.interface.js';
 
 
 @injectable()
-export class PinoService implements LoggerInterface {
+export default class PinoService implements LoggerInterface {
   private readonly logger: Logger;
 
 

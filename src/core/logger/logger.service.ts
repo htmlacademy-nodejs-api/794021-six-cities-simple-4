@@ -1,1 +1,1 @@
-export { PinoService as LoggerService } from './pino.service.js';
+export { default as LoggerService } from './pino.service.js';
