@@ -1,13 +1,26 @@
-import { Logger } from './core/logger/logger.js';
+import 'reflect-metadata';
+import { Container } from 'inversify';
 import Application from './app/application.js';
+import { Logger } from './core/logger/logger.js'; // TODO import as default
+import { LoggerInterface } from './core/logger/logger.interface.js';
 import ConfigurationService from './core/configuration/configuration.service.js';
+import { ConfigurationInterface } from './core/configuration/configuration.interface.js';
+import { ConfigurationOptions } from './core/configuration/configuration.schema.js';
+import { ApplicationComponent } from './types/application-component.enum.js';
 
 
 async function bootstrap() {
-  const logger = new Logger();
-  const configuration = new ConfigurationService(logger);
+  const container = new Container();
+  container.bind<Application>(ApplicationComponent.Application).
+    to(Application);
 
-  const application = new Application(logger, configuration);
+  container.bind<ConfigurationInterface<ConfigurationOptions>>(ApplicationComponent.ConfigurationInterface).
+    to(ConfigurationService);
+
+  container.bind<LoggerInterface>(ApplicationComponent.LoggerInterface).
+    to(Logger); // TODO rename to LoggerService?
+
+  const application = container.get<Application>(ApplicationComponent.Application);
   await application.init();
 }
 

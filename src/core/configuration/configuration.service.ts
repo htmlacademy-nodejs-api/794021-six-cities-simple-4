@@ -1,15 +1,17 @@
 import { config } from 'dotenv';
+import { inject, injectable } from 'inversify';
 import { ConfigurationInterface } from './configuration.interface.js';
 import { ConfigurationSchema, ConfigurationOptions } from './configuration.schema.js';
 import { LoggerInterface } from '../logger/logger.interface.js';
+import { ApplicationComponent } from '../../types/application-component.enum.js';
 
-
+@injectable()
 export default class ConfigurationService implements ConfigurationInterface<ConfigurationOptions> {
   private readonly config: ConfigurationOptions;
 
 
   constructor(
-    private readonly logger: LoggerInterface,
+    @inject(ApplicationComponent.LoggerInterface) private readonly logger: LoggerInterface,
   ) {
     const parsedConfigOutput = config();
 
