@@ -1,0 +1,89 @@
+{
+  "api": {
+    "titles": [
+      "我 Amazing and Extremely Central Flat",
+      "想 Loft Studio in the Central Area",
+      "要 Penthouse, 4-5 rooms + 5 balconies",
+      "自 The house among olive",
+      "由 Waterfront with extraordinary view"
+    ],
+
+    "descriptions": [
+      "进 A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.",
+      "化 Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, and art gallery downstairs.",
+      "进 I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+      "化 Peaceful studio in the most wanted area in town. Quiet house Near of everything.",
+      "论 Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.",
+      "我 This is a place for dreamers to reset, reflect, and create."
+    ],
+
+    "userNames": [
+      "奥古斯塔 Augusta",
+      "杰克 Jack",
+      "雅各 James",
+      "珍 奥斯汀 Jane Austen",
+      "约翰 John"
+    ],
+
+    "userAvatarPaths": [
+      "https://picsum.photos/40/40?random=1",
+      "https://picsum.photos/40/40?random=2",
+      "https://picsum.photos/40/40?random=3",
+      "https://picsum.photos/40/40?random=4"
+    ],
+
+    "userEmails": [
+      "mock1@mock1.mock",
+      "mock2@mock1.mock",
+      "mock3@mock1.mock",
+      "mock1@mock2.mock",
+      "mock2@mock2.mock"
+    ],
+
+    "photoPaths": [
+      "https://picsum.photos/260/200?random=1",
+      "https://picsum.photos/260/200?random=2",
+      "https://picsum.photos/260/200?random=3",
+      "https://picsum.photos/260/200?random=4",
+      "https://picsum.photos/260/200?random=5",
+      "https://picsum.photos/260/200?random=6",
+      "https://picsum.photos/260/200?random=7",
+      "https://picsum.photos/260/200?random=8"
+    ],
+
+    "cities": [
+      [ "Paris", 48.85661, 2.351499 ],
+      [ "Cologne", 50.938361, 6.959974 ],
+      [ "Brussels", 50.846557, 4.351697 ],
+      [ "Amsterdam", 52.370216, 4.895168 ],
+      [ "Hamburg", 53.550341, 10.000654 ],
+      [ "Dusseldorf", 51.225402, 6.776314 ]
+    ],
+
+    "features": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+
+    "dates": [
+      "2023-01-13T01:00:00.000Z",
+      "2023-02-14T02:11:00.000Z",
+      "2023-03-15T03:22:00.000Z",
+      "2023-04-16T04:33:00.000Z",
+      "2023-05-14T05:44:00.000Z"
+    ],
+
+    "types": [
+      "apartment",
+      "hotel",
+      "house",
+      "room"
+    ]
+
+  }
+}

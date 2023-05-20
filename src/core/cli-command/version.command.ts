@@ -2,8 +2,10 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { CliCommandInterface } from './cli-command.interface.js';
 
+
 export default class VersionCommand implements CliCommandInterface {
   public readonly name = '--version';
+
 
   private readVersion(): string {
     const contentPageJSON = readFileSync(path.resolve('./package.json'), 'utf-8');
@@ -11,8 +13,10 @@ export default class VersionCommand implements CliCommandInterface {
     return content.version;
   }
 
+
   public async execute(): Promise<void> {
     const version = this.readVersion();
     console.log(version);
   }
+
 }

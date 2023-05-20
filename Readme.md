@@ -5,14 +5,10 @@
 
 ---
 
-_Не удаляйте и не изменяйте папки и файлы:_
-_`.editorconfig`, `.gitattributes`, `.gitignore`._
-
----
-
 ## Памятка
 
-Не удаляйте и не изменяйте папки и файлы: `.editorconfig`, `.gitattributes`, `.gitignore`.
+_Не удаляйте и не изменяйте папки и файлы:_
+_`.editorconfig`, `.gitattributes`, `.gitignore`._
 
 ### 1. Создайте форк на Гитхабе
 

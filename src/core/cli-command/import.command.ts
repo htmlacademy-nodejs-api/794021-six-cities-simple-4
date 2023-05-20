@@ -1,21 +1,40 @@
-import TSVFileReader from '../file-reader/tsv.reader.js';
+import { exit } from 'node:process';
 import { CliCommandInterface } from './cli-command.interface.js';
+import StringFileReader from '../file-reader/string-file-reader.js';
+import { OfferParser } from '../../modules/offer-parser/offer-parser.js';
+
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
-  public execute(filename: string): void {
-    const fileReader = new TSVFileReader(filename.trim());
+
+
+  public async execute(filename: string): Promise<void> {
+    const fileReader = new StringFileReader(filename.trim());
+
+    fileReader.on('row', this.onRowReceive);
+    fileReader.on('end', this.onEnd);
 
     try {
-      fileReader.read();
-      console.log(fileReader.toArray());
+      await fileReader.read();
     } catch (err) {
-
       if (!(err instanceof Error)) {
         throw err;
       }
-
-      console.log(`Could not import data from file due to reason: «${err.message}»`);
+      console.error(`Could not import data from file due to reason: «${err.message}»`);
+      exit(1);
     }
   }
+
+
+  private onEnd(count: number): void {
+    console.log('Imported %d offers-lines.', count);
+  }
+
+
+  private onRowReceive(row: string): void {
+    const parser = new OfferParser(row);
+    const offer = parser.parse();
+    console.log(`Offer imported:\n${JSON.stringify(offer, null, '\t')}`);
+  }
+
 }
