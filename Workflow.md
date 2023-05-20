@@ -13,8 +13,12 @@ npm install
 
 В файле должны быть следующие переменные окружения:
 
+  - `DB_ADDRESS=XX.XX.XX.XX` — IP-адрес сервера базы данных
+  - `DB_PORT=XXXXX` — TCP-порт сервера базы данных
+  - `DB_LOGIN=xxxxxx` — логин для подключения к базе данных
+  - `DB_PASSWORD=xxxxxx` — пароль для подключения к базе данных
+  - `DB_NAME=xxxxxx` — имя базы данных
   - `INCOMING_PORT=XXXX` — номер TCP-порта для входящих соединений клиентов
-  - `DB_IP_ADDRESS=XX.XX.XX.XX` — IP-адрес сервера базы данных
   - `PASSWORD_HASH_SALT=XXXX` — соль для создания хэша пароля
 
 - Установите [Docker Desktop](https://docs.docker.com/desktop/)
