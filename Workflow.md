@@ -17,6 +17,9 @@ npm install
   - `DB_IP_ADDRESS=XX.XX.XX.XX` — IP-адрес сервера базы данных
   - `PASSWORD_HASH_SALT=XXXX` — соль для создания хэша пароля
 
+- Установите [Docker Desktop](https://docs.docker.com/desktop/)
+- Запустите в терминале команду `docker-compose up`
+
 ---
 
 ### Сценарии
