@@ -1,9 +1,7 @@
-type UserType = true | false
-
 export type User = {
-  name: string;
-  email: string;
   avatarPath: string;
+  email: string;
+  name: string;
+  isPro: boolean;
   password: string;
-  isPro: UserType;
 }
