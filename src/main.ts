@@ -7,6 +7,8 @@ import ConfigurationService from './core/configuration/configuration.service.js'
 import { ConfigurationInterface } from './core/configuration/configuration.interface.js';
 import { ConfigurationOptions } from './core/configuration/configuration.schema.js';
 import { ApplicationComponent } from './types/application-component.enum.js';
+import { DatabaseClientInterface } from './core/database-client/database-client.interface.js';
+import { DatabaseClientService } from './core/database-client/database-client.service.js';
 
 
 async function bootstrap() {
@@ -17,6 +19,10 @@ async function bootstrap() {
 
   container.bind<ConfigurationInterface<ConfigurationOptions>>(ApplicationComponent.ConfigurationInterface).
     to(ConfigurationService).
+    inSingletonScope();
+
+  container.bind<DatabaseClientInterface>(ApplicationComponent.DatabaseClientInterface).
+    to(DatabaseClientService).
     inSingletonScope();
 
   container.bind<LoggerInterface>(ApplicationComponent.LoggerInterface).
