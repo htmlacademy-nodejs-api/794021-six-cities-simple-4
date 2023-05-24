@@ -33,7 +33,7 @@ export const ConfigurationSchema = convict<ConfigurationOptions>({
   DB_LOGIN: {
     doc: 'User login to connect to the database',
     format: String,
-    env: 'DB_USER',
+    env: 'DB_LOGIN',
     default: null,
   },
 
