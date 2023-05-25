@@ -3,5 +3,5 @@ export type User = {
   email: string;
   name: string;
   isPro: boolean;
-  password: string;
+  password: string; // TODO Example project does not have 'password' field in the type 'User' ?
 }
