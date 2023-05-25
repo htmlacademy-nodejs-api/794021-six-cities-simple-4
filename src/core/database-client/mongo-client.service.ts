@@ -19,7 +19,7 @@ export default class MongoClientService implements DatabaseClientInterface {
   }
 
 
-  private async _connect(uri:string): Promise<void> {
+  private async _connect(uri: string): Promise<void> {
     this.mongooseInstance = await this._connectWithRetry(uri);
     this.isConnected = true;
   }
