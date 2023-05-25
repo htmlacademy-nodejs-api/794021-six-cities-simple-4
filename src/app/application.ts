@@ -21,17 +21,17 @@ export default class Application {
   }
 
 
-    private async _initDb() {
-      const dbUri = getDatabaseURI(
-        this.configuration.get('DB_ADDRESS'),
-        this.configuration.get('DB_PORT'),
-        this.configuration.get('DB_LOGIN'), 
-        this.configuration.get('DB_PASSWORD'),
-        this.configuration.get('DB_NAME'),
-      )
+  private async _initDb() {
+    const dbUri = getDatabaseURI(
+      this.configuration.get('DB_ADDRESS'),
+      this.configuration.get('DB_PORT'),
+      this.configuration.get('DB_LOGIN'),
+      this.configuration.get('DB_PASSWORD'),
+      this.configuration.get('DB_NAME'),
+    );
 
-      return this.databaseClient.connect(dbUri);
-    }
+    return this.databaseClient.connect(dbUri);
+  }
 
 
   public async init() {
@@ -39,7 +39,7 @@ export default class Application {
     this.logger.info(`Incoming TCP port: ${this.configuration.get('INCOMING_TCP_PORT')}`);
 
     this.logger.info('Database is starting...');
-    await this._initDb()
+    await this._initDb();
     this.logger.info('Database initialization completed.');
   }
 
