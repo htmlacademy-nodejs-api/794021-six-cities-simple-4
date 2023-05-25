@@ -49,7 +49,7 @@ export default class MongoClientService implements DatabaseClientInterface {
     this.mongooseInstance = null;
   }
 
-  
+
   public async connect(uri: string): Promise<void> {
     if (this.isConnected) {
       throw new Error('MongoDB client already connected.');
