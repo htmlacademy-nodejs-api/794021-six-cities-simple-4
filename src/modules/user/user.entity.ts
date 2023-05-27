@@ -1,5 +1,5 @@
 import typegoose, { defaultClasses, getModelForClass } from '@typegoose/typegoose';
-import { createPasswordHash } from '../../core/helpers/index.js';
+import { createPasswordHash, isEmailValid } from '../../core/helpers/index.js';
 import { UserName } from '../../consts/users.js';
 import { User } from '../../types/user.type.js';
 
@@ -14,10 +14,22 @@ export interface UserEntity extends defaultClasses.Base {
   }
 })
 export class UserEntity extends defaultClasses.TimeStamps implements User {
-  @prop({ required: false, default: '' })
+  @prop({
+    default: '',
+    required: false,
+    type: String,
+  })
   public avatarPath = '';
 
-  @prop({ unique: true, required: true })
+  @prop({
+    required: true,
+    type: String,
+    unique: true,
+    validate: {
+      validator: isEmailValid,
+      message: 'Email is not valid.',
+    },
+  })
   public email = '';
 
   @prop({
@@ -25,13 +37,22 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     maxLength: UserName.maxLength,
     minLength: UserName.minLength,
     required: true,
+    type: String,
   })
   public name = '';
 
-  @prop({ default: false, required: true })
+  @prop({
+    default: false,
+    required: true,
+    type: Boolean,
+  })
   public isPro = false;
 
-  @prop({ default: '', required: true })
+  @prop({
+    default: '',
+    required: true,
+    type: String,
+  })
   public password = '';
 
 
