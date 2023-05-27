@@ -1,10 +1,11 @@
 import { Location } from '../../../types/location.type';
 import { OfferFeatures } from '../../../types/offer-features.type';
 import { OfferType } from '../../../types/offer-type.type';
+import { Offer } from '../../../types/offers.type';
 import { User } from '../../../types/user.type';
 
 
-export default class CreateOfferDto {
+export default class CreateOfferDto implements Offer {
   public cityName!: string;
   public commentCount!: number;
   public description!: string;
