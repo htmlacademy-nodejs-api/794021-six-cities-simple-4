@@ -11,7 +11,8 @@ export default class OfferService implements OfferServiceInterface {
   constructor(
     @inject(ApplicationComponent.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(ApplicationComponent.OfferModel) private readonly offerModel: ModelType<OfferEntity>
-  ) {}
+  ) {
+  }
 
 
   public async create(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>> {

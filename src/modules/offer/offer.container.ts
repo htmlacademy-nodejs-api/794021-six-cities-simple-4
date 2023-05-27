@@ -6,14 +6,17 @@ import OfferService from './offer.service.js';
 import { ApplicationComponent } from '../../types/application-component.enum.js';
 
 
-export function createCategoryContainer() {
-  const categoryContainer = new Container();
+export function createOfferContainer() {
+  const offerContainer = new Container();
 
-  categoryContainer.bind<OfferServiceInterface>(ApplicationComponent.OfferServiceInterface).
-    to(OfferService);
+  offerContainer.
+    bind<OfferServiceInterface>(ApplicationComponent.OfferServiceInterface).
+    to(OfferService).
+    inSingletonScope();
 
-  categoryContainer.bind<types.ModelType<OfferEntity>>(ApplicationComponent.OfferModel).
+  offerContainer.
+    bind<types.ModelType<OfferEntity>>(ApplicationComponent.OfferModel).
     toConstantValue(OfferModel);
 
-  return categoryContainer;
+  return offerContainer;
 }

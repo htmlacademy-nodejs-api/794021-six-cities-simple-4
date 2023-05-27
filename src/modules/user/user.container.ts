@@ -9,11 +9,13 @@ import { ApplicationComponent } from '../../types/application-component.enum.js'
 export function createUserContainer() {
   const container = new Container();
 
-  container.bind<UserServiceInterface>(ApplicationComponent.UserServiceInterface).
+  container.
+    bind<UserServiceInterface>(ApplicationComponent.UserServiceInterface).
     to(UserService).
     inSingletonScope();
 
-  container.bind<types.ModelType<UserEntity>>(ApplicationComponent.UserModel).
+  container.
+    bind<types.ModelType<UserEntity>>(ApplicationComponent.UserModel).
     toConstantValue(UserModel);
 
   return container;
