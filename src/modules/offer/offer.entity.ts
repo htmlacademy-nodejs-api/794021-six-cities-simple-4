@@ -19,58 +19,91 @@ export interface OfferEntity extends defaultClasses.Base {
   }
 })
 export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Object,
+  })
   public city!: City;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Number,
+  })
   public commentCount!: number;
 
   @prop({
     maxLength: OfferDescription.MaxLength,
     minLength: OfferDescription.MinLength,
-    required: true
+    required: true,
+    type: String,
   })
   public description!: string;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Array,
+  })
   public features!: OfferFeatures;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Object,
+  })
   public host!: User;
 
-  @prop({ required: true })
+  @prop({
+    default: false,
+    required: true,
+    type: Boolean,
+  })
   public isPremium!: boolean;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Object,
+  })
   public location!: Location;
 
   @prop({
     max: OfferGuestCount.Max,
     min: OfferGuestCount.Min,
     required: true,
+    type: Number,
   })
   public maxGuestCount!: number;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Array,
+  })
   public photoPaths!: string[];
 
-  @prop({ required: true })
+  @prop({
+    default: '',
+    required: true,
+    type: String,
+  })
   public previewPath!: string;
 
   @prop({
     max: OfferPrice.Max,
     min: OfferPrice.Min,
     required: true,
+    type: Number,
   })
   public price!: number;
 
-  @prop({ required: true })
+  @prop({
+    required: true,
+    type: Date,
+  })
   public publicationDate!: Date;
 
   @prop({
     max: OfferRating.Max,
     min: OfferRating.Min,
-    required: true
+    required: true,
+    type: Number,
   })
   public rating!: number;
 
@@ -78,17 +111,22 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
     max: OfferRoomCount.Max,
     min: OfferRoomCount.Min,
     required: true,
+    type: Number,
   })
   public roomCount!: number;
 
   @prop({
     maxLength: OfferTitle.MaxLength,
     minLength: OfferTitle.MinLength,
-    required: true
+    required: true,
+    type: String,
   })
   public title!: string;
 
-  @prop({ required: true })
+  @prop({
+    equired: true,
+    type: String, // TODO narrow it later
+  })
   public type!: OfferType;
 }
 
