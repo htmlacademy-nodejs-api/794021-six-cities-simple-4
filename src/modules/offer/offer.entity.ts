@@ -40,6 +40,7 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
   public description!: string;
 
   @prop({
+    default: [],
     required: true,
     type: Array,
   })
@@ -73,6 +74,7 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
   public maxGuestCount!: number;
 
   @prop({
+    default: [],
     required: true,
     type: Array,
   })
