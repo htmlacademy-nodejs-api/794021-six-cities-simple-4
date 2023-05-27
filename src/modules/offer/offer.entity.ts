@@ -26,6 +26,7 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
   public city!: City;
 
   @prop({
+    default: 0,
     required: true,
     type: Number,
   })
