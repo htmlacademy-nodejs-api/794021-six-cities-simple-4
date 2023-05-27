@@ -10,7 +10,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./mongodb:/data/db
+      - six-cities-4-794021:/data/db
 
   database_web_panel:
     image: mongo-express
@@ -24,3 +24,6 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: test
       ME_CONFIG_MONGODB_URL: mongodb://admin:test@database:27017/
+
+volumes:
+  six-cities-4-794021:
