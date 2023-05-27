@@ -24,6 +24,14 @@ npm install
 - Установите [Docker Desktop](https://docs.docker.com/desktop/), запустите его и завершите начальную настройку (например примите условия лицензии, разрешите доступ к папкам и так далее)
 - Запустите в терминале команду `docker-compose up`
 
+### Для процесса разработки
+
+Для редактора VS Code можно установить следующие расширения:
+
+- [OpenAPI (swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)
+- [Docker (Microsoft)](https://github.com/microsoft/vscode-docker)
+- [Git Graph](https://github.com/mhutchie/vscode-git-graph)
+
 ---
 
 ### Сценарии
