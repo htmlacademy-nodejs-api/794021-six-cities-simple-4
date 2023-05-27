@@ -126,7 +126,7 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
   public title!: string;
 
   @prop({
-    equired: true,
+    required: true,
     type: String, // TODO narrow it later
   })
   public type!: OfferType;
