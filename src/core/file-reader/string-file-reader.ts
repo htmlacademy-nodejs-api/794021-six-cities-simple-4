@@ -31,7 +31,9 @@ export default class StringFileReader extends EventEmitter implements FileReader
         stringBuffer = stringBuffer.slice(++nextLinePosition);
         fullRowCount++;
 
-        this.emit('row', row);
+        await new Promise((resolve) => {
+          this.emit('row', row, resolve);
+        });
       }
     }
 
