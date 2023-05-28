@@ -1,11 +1,10 @@
-import typegoose, { defaultClasses, getModelForClass } from '@typegoose/typegoose';
+import typegoose, { Ref, defaultClasses, getModelForClass } from '@typegoose/typegoose';
 import { OfferDescription, OfferGuestCount, OfferPrice, OfferRating, OfferRoomCount, OfferTitle } from '../../consts/offers.js';
-import { Offer } from '../../types/offers.type.js';
 import { OfferFeatures } from '../../types/offer-features.type.js';
-import { City } from '../../types/city.type.js';
 import { Location } from '../../types/location.type.js';
 import { OfferType } from '../../types/offer-type.type.js';
-import { User } from '../../types/user.type.js';
+import { UserEntity } from '../user/user.entity.js';
+import { CityEntity } from '../city/city.entity.js';
 
 const { prop, modelOptions } = typegoose;
 
@@ -18,12 +17,14 @@ export interface OfferEntity extends defaultClasses.Base {
     collection: 'offers'
   }
 })
-export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
+export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
+    _id: false,
+    ref: CityEntity,
     required: true,
     type: Object,
   })
-  public city!: City;
+  public city!: Ref<CityEntity>;
 
   @prop({
     default: 0,
@@ -48,10 +49,11 @@ export class OfferEntity extends defaultClasses.TimeStamps implements Offer {
   public features!: OfferFeatures;
 
   @prop({
+    _id: false,
+    ref: UserEntity,
     required: true,
-    type: Object,
   })
-  public host!: User;
+  public host!: Ref<UserEntity>;
 
   @prop({
     default: false,
