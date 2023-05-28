@@ -1,4 +1,4 @@
-import { User } from "../../../types/user.type";
+import { User } from '../../../types/user.type';
 
 export default class CreateUserDto implements User { // TODO should name be UserDtoCreator ?
   public avatarPath!: string;
