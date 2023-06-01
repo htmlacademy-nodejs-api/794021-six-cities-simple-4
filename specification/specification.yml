@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API server for a «Six sities. Simple» project.
+  description: |-
+    * An API for training project named «Six sities. Simple».
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+
+tags:
+  - name: offers
+    description: Actions with offers of the rooms/hotels
+  - name: comments
+    description: Actions with guest reviews of the offers
+  - name: users
+    description: Actions with users (both hosts and guests)
+
+
+paths:
+  /offers:
+    get:
+      tags:
+        - offers
+      summary: Returns all offers
+      description: Returns all offers
+      responses:
+        "200":
+          description: Offers are returned
+        "400":
+          description: Bad request
+
+    post:
+      tags:
+        - offers
+      summary: Creates offer
+      description: Creates offer
+      responses:
+        "201":
+          description: Offer is created
+        "400":
+          description: Bad request
+        "401":
+          description: User is not authorized
+
+    patch:
+      tags:
+        - offers
+      summary: Updates offer
+      description: Updates offer
+      responses:
+        "200":
+          description: Offer is updated
+        "400":
+          description: Bad request
+        "401":
+          description: User is not authorized
+
+    delete:
+      tags:
+        - offers
+      summary: Deletes offer
+      description: Deletes offer
+      responses:
+        "200":
+          description: Offer is deleted
+        "400":
+          description: Bad request
+        "401":
+          description: User is not authorized
+
+
+  /offers/{id}:
+    get:
+      tags:
+        - offers
+      summary: Returns specified offer's details
+      description: Returns specified offer's details
+      responses:
+        "200":
+          description: Returned details of the specified offer
+        "400":
+          description: Bad request
+
+
+  /offers/{id}/comments:
+    get:
+      tags:
+        - comments
+      summary: Returns all comments for a specific offer
+      description: Returns all comments for a specific offer
+      responses:
+        "200":
+          description: Comments are returned
+        "400":
+          description: Bad request
+
+    post:
+      tags:
+        - comments
+      summary: Creates a comment for a specific offer
+      description: Creates a comment for a specific offer
+      responses:
+        "201":
+          description: Comment is created
+        "400":
+          description: Bad request
+        "401":
+          description: User is not authorized
+
+
+  /users:
+    post:
+      tags:
+        - users
+      summary: Creates a user account
+      description: Creates a user account
+      responses:
+        "200":
+          description: User account is created
+        "400":
+          description: Bad request
+        "401":
+          description: Inssufficient rights to create a user account
+
+
+  /users/login:
+    get:
+      tags:
+        - users
+      summary: Checks if user is authorized
+      description: Returns information of the user if the authorization was successful
+      responses:
+        "201":
+          description: User is authorized
+        "401":
+          description: User is not authorized
+
+    post:
+      tags:
+        - users
+      summary: User authorization
+      description: User authorization
+      responses:
+        "201":
+          description: User is authorized
+        "401":
+          description: User is not authorized
+
+
+  /users/logout:
+    post:
+      tags:
+        - users
+      summary: Log user out
+      description: Log user out
+      responses:
+        "200":
+          description: User is logged out
+        "400":
+          description: Bad request
