@@ -220,5 +220,4 @@ paths:
       responses:
         "200":
           description: User is logged out
-        "400":
-          description: Bad request
+
