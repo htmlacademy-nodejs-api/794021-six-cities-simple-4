@@ -1,9 +1,7 @@
-type UserType = true | false
-
 export type User = {
-  name: string;
-  email: string;
   avatarPath: string;
-  password: string;
-  isPro: UserType;
+  email: string;
+  name: string;
+  isPro: boolean;
+  password: string; // TODO Example project does not have 'password' field in the type 'User' ?
 }

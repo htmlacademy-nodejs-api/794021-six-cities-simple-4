@@ -17,9 +17,9 @@ ${emphasize('Usage:')}
 
 ${emphasize('Commands')}:
   --help                           ${emphasize('# displays this help message')}
-  --import <PATH>                  ${emphasize('# imports data from .tsv-file with name "PATH"')}
+  --import <PATH> <DB_HOST> <DB_PORT> <DB_LOGIN> <DB_PASS> <DB_NAME> <PASS_SALT> ${emphasize('# imports data from .tsv-file named "PATH" with database credentials')}
   --version                        ${emphasize('# displays version of the program')}
-  --generate <COUNT> <PATH> <URL>  ${emphasize('# makes COUNT entries and saves to PATH-filename in TSV format, uses samples data from URL')}
+  --generate <COUNT> <SAVE-PATH> <DATA-URL>  ${emphasize('# makes COUNT entries, saves to SAVE-PATH filename in TSV format, uses data from DATA-URL')}
 `
     );
   }
