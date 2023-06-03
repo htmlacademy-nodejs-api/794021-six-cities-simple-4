@@ -222,6 +222,7 @@ paths:
         - users
       summary: Log user out
       description: Log user out
+      # TODO: describe sent token
       responses:
         "200":
           description: User is logged out
