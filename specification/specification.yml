@@ -41,6 +41,7 @@ paths:
       summary: Creates offer
       description: Creates offer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -80,6 +81,7 @@ paths:
       summary: Updates offer
       description: Updates offer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -139,6 +141,7 @@ paths:
       summary: Creates a comment for a specific offer
       description: Creates a comment for a specific offer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -163,6 +166,7 @@ paths:
       summary: Creates a user account
       description: Creates a user account
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -199,6 +203,7 @@ paths:
       summary: User authorization
       description: User authorization
       requestBody:
+        required: true
         content:
           application/json:
             schema:
