@@ -27,46 +27,33 @@ paths:
       description: Returns all offers
       responses:
         "200":
-          description: Offers are returned
-        "400":
-          description: Bad request
+          description: Offers are sent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './entities/offer/downloaded-offer.yml'
 
     post:
       tags:
         - offers
       summary: Creates offer
       description: Creates offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './entities/offer/uploaded-offer.yml'
       responses:
         "201":
           description: Offer is created
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
         "400":
-          description: Bad request
-        "401":
-          description: User is not authorized
-
-    patch:
-      tags:
-        - offers
-      summary: Updates offer
-      description: Updates offer
-      responses:
-        "200":
-          description: Offer is updated
-        "400":
-          description: Bad request
-        "401":
-          description: User is not authorized
-
-    delete:
-      tags:
-        - offers
-      summary: Deletes offer
-      description: Deletes offer
-      responses:
-        "200":
-          description: Offer is deleted
-        "400":
-          description: Bad request
+          description: Data validation failed
         "401":
           description: User is not authorized
 
@@ -75,14 +62,58 @@ paths:
     get:
       tags:
         - offers
-      summary: Returns specified offer's details
-      description: Returns specified offer's details
+      summary: Returns specified offer's information
+      description: Returns specified offer's information
       responses:
         "200":
-          description: Returned details of the specified offer
-        "400":
-          description: Bad request
+          description: Sent information of the specified offer
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
+        "404":
+          description: Offer not found
 
+    patch:
+      tags:
+        - offers
+      summary: Updates offer
+      description: Updates offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './entities/offer/uploaded-offer.yml'
+      responses:
+        "200":
+          description: Offer is updated
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
+        "400":
+          description: Data validation failed
+        "401":
+          description: User is not authorized
+        "403":
+          description: Cannot update an offer of another user
+        "404":
+          description: Offer not found
+
+    delete:
+      tags:
+        - offers
+      summary: Deletes offer
+      description: Deletes offer
+      responses:
+        "204":
+          description: Offer is deleted
+        "401":
+          description: User is not authorized
+        "403":
+          description: Cannot delete an offer of another user
+        "404":
+          description: Offer not found
 
   /offers/{id}/comments:
     get:
@@ -92,20 +123,35 @@ paths:
       description: Returns all comments for a specific offer
       responses:
         "200":
-          description: Comments are returned
-        "400":
-          description: Bad request
+          description: Comments are sent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './entities/comment/downloaded-comment.yml'
+        "404":
+          description: Offer not found
 
     post:
       tags:
         - comments
       summary: Creates a comment for a specific offer
       description: Creates a comment for a specific offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './entities/comment/uploaded-comment.yml'
       responses:
         "201":
           description: Comment is created
+          content:
+            application/json:
+              schema:
+                $ref: './entities/comment/downloaded-comment.yml'
         "400":
-          description: Bad request
+          description: Data validation failed
         "401":
           description: User is not authorized
 
@@ -116,13 +162,22 @@ paths:
         - users
       summary: Creates a user account
       description: Creates a user account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './entities/user/uploaded-user.yml'
       responses:
         "200":
           description: User account is created
+          content:
+            application/json:
+              schema:
+                $ref: './entities/user/downloaded-user.yml'
         "400":
-          description: Bad request
+          description: Data validation failed
         "401":
-          description: Inssufficient rights to create a user account
+          description: Only anonymous users can create accounts
 
 
   /users/login:
@@ -131,6 +186,7 @@ paths:
         - users
       summary: Checks if user is authorized
       description: Returns information of the user if the authorization was successful
+      # TODO: describe sending token
       responses:
         "201":
           description: User is authorized
@@ -142,9 +198,15 @@ paths:
         - users
       summary: User authorization
       description: User authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './entities/user/logging-in-user.yml'
       responses:
         "201":
           description: User is authorized
+          # TODO: describe received token
         "401":
           description: User is not authorized
 

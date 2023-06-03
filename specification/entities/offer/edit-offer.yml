@@ -1,0 +1,59 @@
+type: object
+
+
+properties:
+  description:
+    type: string
+    example: A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.
+
+  features:
+    type: array
+    enum: [ Baby seat, Cabel TV, Coffee machine, Dishwasher, Fridge, Heating, Kitchen, Towels, Washing machine, Wi-Fi ]
+    items:
+      type: string
+    example:
+      - Cabel TV
+      - Fridge
+      - Heating
+      - Towels
+      - Wi-Fi
+
+  location:
+    $ref: '../location/location.yml'
+
+  maxGuestCount:
+    type: number
+    example: 4
+
+  photoUrls:
+    type: array
+    items:
+      type: string
+    example:
+      - https://site.mock/avatars/photo1.jpg
+      - https://site.mock/avatars/photo2.jpg
+      - https://site.mock/avatars/photo3.jpg
+      - https://site.mock/avatars/photo4.jpg
+      - https://site.mock/avatars/photo5.jpg
+      - https://site.mock/avatars/photo6.jpg
+
+  previewUrl:
+    type: string
+    example: https://site.mock/avatars/photo1.jpg
+
+  price:
+    type: number
+    example: 120.5
+
+  roomCount:
+    type: number
+    expample: 3
+
+  title:
+    type: string
+    example: Beautiful & luxurious apartment at great location
+
+  type:
+    type: string
+    enum: [ apartment, hotel, house, room ]
+    example: apartment
