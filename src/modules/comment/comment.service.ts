@@ -4,6 +4,8 @@ import { CommentServiceInterface } from './comment-service.interface.js';
 import CreateCommentDto from './dto/create-comment.dto.js';
 import { CommentEntity } from './comment.entity.js';
 import { LoggerInterface } from '../../core/logger/logger.interface.js';
+import { SortType } from '../../consts/database.js';
+import { CommentConstraint } from '../../consts/comment.js';
 import { ApplicationComponent } from '../../types/application-component.enum.js';
 
 
@@ -28,8 +30,10 @@ export default class CommentService implements CommentServiceInterface {
 
 
   public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
+    // TODO add user-specified limit count
     return this.model
       .find({ offerId }, {}, { limit: CommentConstraint.maxCountPerQuery })
+      .sort({ createdAt: SortType.HighToLow })
       .populate([ 'offerId', 'userId' ])
       .exec();
   }
