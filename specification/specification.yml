@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API server for a «Six sities. Simple» project.
+  description: |-
+    * An API for training project named «Six sities. Simple».
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+
+tags:
+  - name: offers
+    description: Actions with offers of the rooms/hotels
+  - name: comments
+    description: Actions with guest reviews of the offers
+  - name: users
+    description: Actions with users (both hosts and guests)
+
+
+paths:
+  /offers:
+    get:
+      tags:
+        - offers
+      summary: Returns all offers
+      description: Returns all offers
+      responses:
+        "200":
+          description: Offers are sent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './entities/offer/downloaded-offer.yml'
+
+    post:
+      tags:
+        - offers
+      summary: Creates offer
+      description: Creates offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './entities/offer/uploaded-offer.yml'
+      responses:
+        "201":
+          description: Offer is created
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
+        "400":
+          description: Data validation failed
+        "401":
+          description: User is not authorized
+
+
+  /offers/{id}:
+    get:
+      tags:
+        - offers
+      summary: Returns specified offer's information
+      description: Returns specified offer's information
+      responses:
+        "200":
+          description: Sent information of the specified offer
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
+        "404":
+          description: Offer not found
+
+    patch:
+      tags:
+        - offers
+      summary: Updates offer
+      description: Updates offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './entities/offer/uploaded-offer.yml'
+      responses:
+        "200":
+          description: Offer is updated
+          content:
+            application/json:
+              schema:
+                $ref: './entities/offer/downloaded-offer.yml'
+        "400":
+          description: Data validation failed
+        "401":
+          description: User is not authorized
+        "403":
+          description: Cannot update an offer of another user
+        "404":
+          description: Offer not found
+
+    delete:
+      tags:
+        - offers
+      summary: Deletes offer
+      description: Deletes offer
+      responses:
+        "204":
+          description: Offer is deleted
+        "401":
+          description: User is not authorized
+        "403":
+          description: Cannot delete an offer of another user
+        "404":
+          description: Offer not found
+
+  /offers/{id}/comments:
+    get:
+      tags:
+        - comments
+      summary: Returns all comments for a specific offer
+      description: Returns all comments for a specific offer
+      responses:
+        "200":
+          description: Comments are sent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './entities/comment/downloaded-comment.yml'
+        "404":
+          description: Offer not found
+
+    post:
+      tags:
+        - comments
+      summary: Creates a comment for a specific offer
+      description: Creates a comment for a specific offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './entities/comment/uploaded-comment.yml'
+      responses:
+        "201":
+          description: Comment is created
+          content:
+            application/json:
+              schema:
+                $ref: './entities/comment/downloaded-comment.yml'
+        "400":
+          description: Data validation failed
+        "401":
+          description: User is not authorized
+
+
+  /users:
+    post:
+      tags:
+        - users
+      summary: Creates a user account
+      description: Creates a user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './entities/user/being-created-user.yml'
+          image/*:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "200":
+          description: User account is created
+          headers:
+            X-Token:
+              description: Authorization token
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: './entities/user/downloaded-user.yml'
+        "400":
+          description: Data validation failed
+        "401":
+          description: Only anonymous users can create accounts
+
+
+  /users/login:
+    get:
+      tags:
+        - users
+      summary: Checks if user is authorized
+      description: Returns information of the user if the authorization was successful
+      security: [ ApiKeyAuth: [] ]
+      responses:
+        "201":
+          description: User is authorized
+        "401":
+          description: User is not authorized
+
+    post:
+      tags:
+        - users
+      summary: User authorization
+      description: User authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './entities/user/logging-in-user.yml'
+      responses:
+        "201":
+          description: User is authorized
+          headers:
+            X-Token:
+              description: Authorization token
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: './entities/user/downloaded-user.yml'
+
+        "401":
+          description: User is not authorized
+
+
+  /users/logout:
+    post:
+      tags:
+        - users
+      summary: Log user out
+      description: Log user out
+      security: [ ApiKeyAuth: [] ]
+      responses:
+        "200":
+          description: User is logged out
+
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Token

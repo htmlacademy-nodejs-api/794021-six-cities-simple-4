@@ -1,0 +1,24 @@
+type: object
+
+author:
+  $ref: '../user/downloaded-user.yml'
+
+publicationDate:
+  type: string
+  format: date-time
+  example: 2020-03-01T00:00:00.000Z
+
+rating:
+  type: number
+  example: 4.85
+
+text:
+  type: string
+  example:
+
+
+required:
+  - author
+  - publicationDate
+  - rating
+  - text

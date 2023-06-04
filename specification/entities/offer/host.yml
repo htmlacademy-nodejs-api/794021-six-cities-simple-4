@@ -1,0 +1,21 @@
+type: object
+
+
+properties:
+  avatarUrl:
+    type: string
+    example: https://site.mock/avatars/photo1.jpg
+
+  isPro:
+    type: boolean
+    example: true
+
+  name:
+    type: string
+    example: Jane Austen
+
+
+required:
+  - avatarUrl
+  - isPro
+  - name

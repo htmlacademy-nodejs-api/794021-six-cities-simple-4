@@ -1,0 +1,10 @@
+type: object
+
+
+properties:
+  location:
+    $ref: '../location/location.yml'
+
+  title:
+    type: string
+    example: Paris

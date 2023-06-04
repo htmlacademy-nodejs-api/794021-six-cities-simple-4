@@ -1,0 +1,14 @@
+type: object
+
+rating:
+  type: number
+  example: 4.85
+
+text:
+  type: string
+  example:
+
+
+required:
+  - rating
+  - text

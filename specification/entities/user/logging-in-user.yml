@@ -1,0 +1,16 @@
+type: object
+
+
+properties:
+  email:
+    type: string
+    example: mockName@mockServer.mockDomain
+
+  password:
+    type: string
+    example: Pass135
+
+
+required:
+  - email
+  - password
