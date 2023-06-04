@@ -14,13 +14,13 @@ export default class CommentService implements CommentServiceInterface {
     private readonly logger: LoggerInterface,
 
     @inject(ApplicationComponent.CommentModel)
-    private readonly commentModel: types.ModelType<CommentEntity>,
+    private readonly model: types.ModelType<CommentEntity>,
   ) {
   }
 
 
   public async create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
-    const service = await this.commentModel.create(dto);
+    const service = await this.model.create(dto);
     this.logger.info(`New comment created: ${dto.text}`);
 
     return service.populate([ 'offerId', 'userId' ]);
@@ -28,7 +28,7 @@ export default class CommentService implements CommentServiceInterface {
 
 
   public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
-    return this.commentModel
+    return this.model
       .find({ offerId }, {}, { limit: CommentConstraint.maxCountPerQuery })
       .populate([ 'offerId', 'userId' ])
       .exec();
@@ -36,7 +36,7 @@ export default class CommentService implements CommentServiceInterface {
 
 
   public async deleteByOfferId(offerId: string): Promise<number> {
-    const result = await this.commentModel.deleteMany({ offerId }).exec();
+    const result = await this.model.deleteMany({ offerId }).exec();
     this.logger.info(`Deleted a comment with id: "${offerId}"`);
 
     return result.deletedCount;
