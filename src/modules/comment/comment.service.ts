@@ -23,14 +23,14 @@ export default class CommentService implements CommentServiceInterface {
     const service = await this.commentModel.create(dto);
     this.logger.info(`New comment created: ${dto.text}`);
 
-    return service.populate([ 'userId', 'offerId' ]);
+    return service.populate([ 'offerId', 'userId' ]);
   }
 
 
   public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
     return this.commentModel
       .find({ offerId }, {}, { limit: CommentConstraint.maxCountPerQuery })
-      .populate([ 'userId', 'offerId' ])
+      .populate([ 'offerId', 'userId' ])
       .exec();
   }
 
