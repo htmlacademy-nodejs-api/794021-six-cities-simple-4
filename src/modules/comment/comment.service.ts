@@ -35,9 +35,9 @@ export default class CommentService implements CommentServiceInterface {
   }
 
 
-  public async deleteByOfferId(offerId: string): Promise<number> {
-    const result = await this.model.deleteMany({ offerId }).exec();
-    this.logger.info(`Deleted a comment with id: "${offerId}"`);
+  public async delete(commentId: string): Promise<number> {
+    const result = await this.model.deleteMany({ commentId }).exec();
+    this.logger.info(`Deleted a comment with id: "${commentId}"`);
 
     return result.deletedCount;
   }
