@@ -14,13 +14,13 @@ export default class OfferService implements OfferServiceInterface {
     private readonly logger: LoggerInterface,
 
     @inject(ApplicationComponent.OfferModel)
-    private readonly offerModel: ModelType<OfferEntity>,
+    private readonly model: ModelType<OfferEntity>,
   ) {
   }
 
 
   public async create(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>> {
-    const service = await this.offerModel.create(dto);
+    const service = await this.model.create(dto);
     this.logger.info(`New offer created: ${dto.description}`);
     return service;
   }
