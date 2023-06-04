@@ -15,7 +15,7 @@ export default class UserService implements UserServiceInterface {
     private readonly logger: LoggerInterface,
 
     @inject(ApplicationComponent.UserModel)
-    private readonly userModel: types.ModelType<UserEntity>,
+    private readonly model: types.ModelType<UserEntity>,
   ) {
   }
 
@@ -24,19 +24,19 @@ export default class UserService implements UserServiceInterface {
     const user = new UserEntity(dto);
     user.setPassword(dto.password, salt);
 
-    const service = this.userModel.create(user);
+    const service = this.model.create(user);
     this.logger.info(`User created: "${user.email}"`);
     return service;
   }
 
 
   public async findByEmail(email: string): Promise<DocumentType<UserEntity> | null> {
-    return this.userModel.findOne({ email });
+    return this.model.findOne({ email });
   }
 
 
   public async findById(userId: string): Promise<DocumentType<UserEntity> | null> {
-    return this.userModel.findOne({ id: userId });
+    return this.model.findOne({ id: userId });
   }
 
 
