@@ -4,4 +4,4 @@ const CommentConstraint = {
   textMinLength: 5,
   ratingMaxValue: 5,
   ratingMinValue: 1,
-}
+} as const;
