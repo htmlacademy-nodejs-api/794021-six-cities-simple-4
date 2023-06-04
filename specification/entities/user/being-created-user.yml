@@ -2,10 +2,6 @@ type: object
 
 
 properties:
-  avatarUrl:
-    type: string
-    example: https://site.mock/avatars/photo1.jpg
-
   email:
     type: string
     example: mockName@mockServer.mockDomain

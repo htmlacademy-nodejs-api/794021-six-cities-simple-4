@@ -170,10 +170,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './entities/user/uploaded-user.yml'
+              $ref: './entities/user/being-created-user.yml'
+          image/*:
+            schema:
+              type: string
+              format: binary
       responses:
         "200":
           description: User account is created
+          headers:
+            X-Token:
+              description: Authorization token
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -190,7 +199,7 @@ paths:
         - users
       summary: Checks if user is authorized
       description: Returns information of the user if the authorization was successful
-      # TODO: describe sending token
+      security: [ ApiKeyAuth: [] ]
       responses:
         "201":
           description: User is authorized
@@ -211,7 +220,16 @@ paths:
       responses:
         "201":
           description: User is authorized
-          # TODO: describe received token
+          headers:
+            X-Token:
+              description: Authorization token
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: './entities/user/downloaded-user.yml'
+
         "401":
           description: User is not authorized
 
@@ -222,8 +240,15 @@ paths:
         - users
       summary: Log user out
       description: Log user out
-      # TODO: describe sent token
+      security: [ ApiKeyAuth: [] ]
       responses:
         "200":
           description: User is logged out
 
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Token
