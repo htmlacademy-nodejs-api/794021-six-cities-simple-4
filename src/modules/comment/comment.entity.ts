@@ -1,8 +1,10 @@
 import typegoose, { defaultClasses, getModelForClass, Ref } from '@typegoose/typegoose';
 import { OfferEntity } from '../offer/offer.entity.js';
 import { UserEntity } from '../user/user.entity.js';
+import { CommentConstraint } from '../../consts/comment.js';
 
 const { prop, modelOptions } = typegoose;
+
 
 export interface CommentEntity extends defaultClasses.Base {}
 
