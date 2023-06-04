@@ -27,6 +27,13 @@ export default class OfferService implements OfferServiceInterface {
   }
 
 
+  public async delete(offerId: string): Promise<DocumentType<OfferEntity> | null> {
+    return this.model.
+      findByIdAndDelete(offerId).
+      exec();
+  }
+
+
   public async update(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     return this.model.
       findByIdAndUpdate(offerId, dto, { new: true }).
