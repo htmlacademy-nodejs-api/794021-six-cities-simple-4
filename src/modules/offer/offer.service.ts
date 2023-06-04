@@ -6,11 +6,15 @@ import CreateOfferDto from './dto/create-offer.dto.js';
 import { LoggerInterface } from '../../core/logger/logger.interface.js';
 import { ApplicationComponent } from '../../types/application-component.enum.js';
 
+
 @injectable()
 export default class OfferService implements OfferServiceInterface {
   constructor(
-    @inject(ApplicationComponent.LoggerInterface) private readonly logger: LoggerInterface,
-    @inject(ApplicationComponent.OfferModel) private readonly offerModel: ModelType<OfferEntity>
+    @inject(ApplicationComponent.LoggerInterface)
+    private readonly logger: LoggerInterface,
+
+    @inject(ApplicationComponent.OfferModel)
+    private readonly offerModel: ModelType<OfferEntity>,
   ) {
   }
 
