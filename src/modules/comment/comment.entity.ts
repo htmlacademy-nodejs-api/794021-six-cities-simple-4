@@ -44,7 +44,7 @@ export class CommentEntity extends defaultClasses.TimeStamps {
   })
   public userId!: Ref<UserEntity>;
 
-  // TODO should 'publicationDate' field be describet in this entity?
+  // TODO should 'publicationDate' field be described in this entity?
 }
 
 export const CommentModel = getModelForClass(CommentEntity);
