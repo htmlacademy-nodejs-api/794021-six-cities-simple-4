@@ -6,6 +6,7 @@ import CreateOfferDto from './dto/create-offer.dto.js';
 import { LoggerInterface } from '../../core/logger/logger.interface.js';
 import { ApplicationComponent } from '../../types/application-component.enum.js';
 import UpdateOfferDto from './dto/update-offer.dto.js';
+import UpdateOfferWithCommentDto from './dto/update-offer-with-comment.dto.js';
 
 
 @injectable()
@@ -37,6 +38,21 @@ export default class OfferService implements OfferServiceInterface {
   public async update(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     return this.model.
       findByIdAndUpdate(offerId, dto, { new: true }).
+      populate([ 'userId' ]).
+      exec();
+  }
+
+
+  public async updateWithComment(offerId: string, dto: UpdateOfferWithCommentDto): Promise<DocumentType<OfferEntity> | null> {
+    return this.model.
+      findByIdAndUpdate(offerId, {
+        $inc: {
+          commentCount: 1,
+        },
+        $push: {
+          rating: dto.rating,
+        },
+      }, { new: true }).
       populate([ 'userId' ]).
       exec();
   }
