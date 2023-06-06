@@ -30,12 +30,12 @@ npm install
 
 ### Генерация моковых данных, импорт данных в базу данных
 
-- запустить моковый сервер исходных данных: `npm run mock:server`. Сервер запустится по адресу `http://localhost:3123`.
+- запустить моковый сервер исходных данных: `npm run mock:server`. Сервер запустится и будет доступен по адресу `http://localhost:3123/api`.
 - сгенерировать данные: `node ./dist/main.cli.js --generate <COUNT> <SAVE-PATH> <URL>` (где `COUNT` — количество предложений, `SAVE-PATH` — имя файла для сохранения данных, `URL` — адрес мокового сервера). Перед выполнением код должен быть скомпилирован из TS в JS.
 > пример команды: `node ./dist/main.cli.js 50 ./mocks/50.tsv http://localhost:3123/api`
-> пример команды с компиляцией на лету: `npm run ts ./src/main.cli.ts -- --generate 30 ./mocks/30.tsv http://localhost:3123`
+> пример команды с компиляцией на лету: `npm run ts ./src/main.cli.ts -- --generate 30 ./mocks/30.tsv http://localhost:3123/api`
 
-- импортировать данные из файла в базу данных: `node ./dist/main.cli.js -- --import <FILENAME> <DATABASE_HOST> <DATABASE_PORT> <DATABASE_LOGIN> <DATABASE_PASSWORD> <DATABASE_NAME> <DATABASE_SALT>`. Перед выполнением код TS должен быть скомпилирован в TS.
+- импортировать данные из файла в базу данных: `node ./dist/main.cli.js -- --import <FILENAME> <DATABASE_HOST> <DATABASE_PORT> <DATABASE_LOGIN> <DATABASE_PASSWORD> <DATABASE_NAME> <DATABASE_SALT>`. Перед выполнением код TS должен быть скомпилирован в JS.
 > пример команды с компиляцией на лету: `npm run ts ./src/main.cli.ts -- --import ./mocks/30.tsv localhost 27017 admin test database secret-salt`
 
 ### Для процесса разработки
