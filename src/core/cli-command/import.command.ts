@@ -17,6 +17,7 @@ import { CityServiceInterface } from '../../modules/city/city-service.interface.
 import { getDatabaseURI } from '../helpers/database.js';
 import { Offer } from '../../types/offers.type.js';
 import { PlainFunction } from '../../types/common.js';
+import ConfigurationService from '../configuration/configuration.service.js';
 
 
 export default class ImportCommand implements CliCommandInterface {
@@ -45,15 +46,16 @@ export default class ImportCommand implements CliCommandInterface {
 
   public async execute(
     filename: string,
-    databaseHost: string,
-    databasePort: string,
-    databaseLogin: string,
-    databasePassword: string,
-    databaseName: string,
-    salt: string,
   ): Promise<void> {
+    const configuration = new ConfigurationService(this.logger);
+    const databaseHost = configuration.get('DB_ADDRESS');
+    const databasePort = configuration.get('DB_PORT');
+    const databaseLogin = configuration.get('DB_LOGIN');
+    const databasePassword = configuration.get('DB_PASSWORD');
+    const databaseName = configuration.get('DB_NAME');
+    this.salt = configuration.get('PASSWORD_HASH_SALT');
+
     const uri = getDatabaseURI(databaseHost, databasePort, databaseLogin, databasePassword, databaseName);
-    this.salt = salt;
 
     await this.databaseService.connect(uri);
     const fileReader = new StringFileReader(filename.trim());

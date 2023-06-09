@@ -10,8 +10,11 @@ import { ApplicationComponent } from '../../types/application-component.enum.js'
 @injectable()
 export default class CityService implements CityServiceInterface {
   constructor(
-    @inject(ApplicationComponent.LoggerInterface) private readonly logger: LoggerInterface,
-    @inject(ApplicationComponent.CityModel) private readonly cityModel: types.ModelType<CityEntity>,
+    @inject(ApplicationComponent.LoggerInterface)
+    private readonly logger: LoggerInterface,
+
+    @inject(ApplicationComponent.CityModel)
+    private readonly cityModel: types.ModelType<CityEntity>,
   ) {}
 
 

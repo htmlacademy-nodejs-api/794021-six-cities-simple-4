@@ -11,12 +11,13 @@ import { ApplicationComponent } from '../types/application-component.enum.js';
 export default class Application {
   constructor(
     @inject(ApplicationComponent.LoggerInterface)
-      private readonly logger: LoggerInterface,
+    private readonly logger: LoggerInterface,
 
     @inject(ApplicationComponent.ConfigurationInterface)
-      private readonly configuration: ConfigurationInterface<ConfigurationOptions>,
+    private readonly configuration: ConfigurationInterface<ConfigurationOptions>,
 
-    @inject(ApplicationComponent.DatabaseClientInterface) private readonly databaseClient: DatabaseClientInterface,
+    @inject(ApplicationComponent.DatabaseClientInterface)
+    private readonly databaseClient: DatabaseClientInterface,
   ) {
   }
 

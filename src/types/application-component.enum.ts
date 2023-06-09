@@ -6,6 +6,9 @@ export const ApplicationComponent = {
   CityModel: Symbol.for('CityModel'),
   CityServiceInterface: Symbol.for('CityServiceInterface'),
 
+  CommentServiceInterface: Symbol.for('CommentServiceInterface'),
+  CommentModel: Symbol.for('CommentModel'),
+
   DatabaseClientInterface: Symbol.for('DatabaseClientInterface'),
 
   LoggerInterface: Symbol.for('LoggerInterface'),
